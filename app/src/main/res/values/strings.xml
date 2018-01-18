@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Test</string>
+    <string name="task_list">任务列表</string>
+    <string name="report_submit">提交报告</string>
+</resources>

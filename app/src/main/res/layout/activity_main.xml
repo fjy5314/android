@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="c.example.test.activity.MainActivity">
+
+    <include layout="@layout/layout_title" />
+
+    <ListView
+        android:id="@+id/lv_task"
+        android:layout_width="match_parent"
+        android:layout_height="290dp"
+        android:dividerHeight="8dp"
+        android:padding="12dp" />
+
+    <GridView
+        android:id="@+id/gv_menu"
+        android:layout_width="match_parent"
+        android:layout_height="226dp"
+        android:gravity="center"
+        android:numColumns="4"
+        android:paddingBottom="24dp"
+        android:paddingTop="24dp"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="24dp"></GridView>
+
+    <!--<TableLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="226dp"-->
+    <!--android:paddingTop="24dp"-->
+    <!--android:paddingBottom="24dp"-->
+    <!--android:shrinkColumns="0,1,2,3"-->
+    <!--&gt;-->
+    <!---->
+    <!--</TableLayout>-->
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:paddingLeft="52dp"
+        android:paddingRight="52dp">
+
+        <ImageButton
+            android:id="@+id/video_button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/ic_video" />
+
+        <ImageButton
+            android:id="@+id/shoot_button"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_centerInParent="true"
+            android:background="@mipmap/ic_shoot" />
+
+        <ImageButton
+            android:id="@+id/interphone_button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/ic_interphone" />
+    </RelativeLayout>
+</LinearLayout>

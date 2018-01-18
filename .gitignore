@@ -40,6 +40,12 @@ captures/
 .idea/dictionaries
 .idea/libraries
 
+/local.properties
+.DS_Store
+/captures
+
+.externalNativeBuild
+
 # Keystore files
 *.jks
 
