@@ -3,16 +3,17 @@ package c.example.test.activity
 import android.content.Intent
 import android.os.Bundle
 import android.widget.*
-import  c.example.test.R
+import c.example.test.R
+import c.example.test.model.ApiResult
+import c.example.test.model.BaseCard
+import com.google.gson.Gson
+import com.zhy.http.okhttp.OkHttpUtils
+import com.zhy.http.okhttp.callback.StringCallback
+import okhttp3.Call
+import okhttp3.MediaType
+import okhttp3.Request
 import java.util.*
 import kotlin.collections.ArrayList
-import com.zhy.http.okhttp.OkHttpUtils
-import android.widget.Toast
-import com.zhy.http.okhttp.callback.StringCallback
-
-import okhttp3.Request
-import okhttp3.Call
-
 
 
 class MainActivity : BaseActivity() {
@@ -22,38 +23,52 @@ class MainActivity : BaseActivity() {
     }
 
     override fun initTitle(): String {
-      return "单兵执法系统"
+        return "单兵执法系统"
     }
 
     override fun initView(savedInstanceState: Bundle?) {
-        val imageButton = findViewById<ImageButton>(R.id.imageButton)
-        imageButton.setImageDrawable(resources.getDrawable(R.mipmap.ic_user))
+        leftButton.setImageDrawable(resources.getDrawable(R.mipmap.ic_user))
         initMenu()
         initTodayTask()
 
-         findViewById<ImageButton>(R.id.ib_shoot_button).setOnClickListener {
-             startActivity(Intent(this, CameraActivity::class.java))
-         }
-//        show()
+        findViewById<ImageButton>(R.id.ib_shoot_button).setOnClickListener {
+            startActivity(Intent(this, CameraActivity::class.java))
+        }
+        show()
     }
-    fun  show(){
-         var map= HashMap<String, String>()
-        map.put("Content-Type","application/json")
+
+    override fun onClickLeftButton() {
+        val popup = PopupMenu(this, leftButton)
+        popup.menuInflater.inflate(R.menu.menu_user, popup.menu)
+
+        popup.setOnMenuItemClickListener { item ->
+            // TODO
+
+            return@setOnMenuItemClickListener true
+        }
+        popup.show()
+
+    }
+
+
+    fun show() {
         OkHttpUtils
-                .post()
+                .postString()
                 .url("http://114.115.129.48:1650/api/device/currentList")
-                .headers(map)
+                .content("{\"siteTaxonomy\":{\"taxonomyId\": 1}}")
+                .mediaType(MediaType.parse("application/json; charset=utf-8"))
                 .build()
                 .execute(MyStringCallback())
     }
-    fun initMenu(){
+
+    fun initMenu() {
         val serviceGrid = findViewById<GridView>(R.id.gv_menu)
         val form: Array<String> = arrayOf("crad_text")
         val int_array: IntArray = intArrayOf(R.id.crad_text)
         val sim_adapter: SimpleAdapter = SimpleAdapter(this, getMenu(), R.layout.layout_card, form, int_array)
         serviceGrid.setAdapter(sim_adapter)
         serviceGrid!!.setOnItemClickListener { _, _, position, _ ->
-            when (position){
+            when (position) {
                 0 -> startActivity(Intent(this, MapActivity::class.java))
                 1 -> startActivity(Intent(this, TaskActivity::class.java))
                 2 -> startActivity(Intent(this, ReportActivity::class.java))
@@ -65,7 +80,7 @@ class MainActivity : BaseActivity() {
         }
     }
 
-    fun initTodayTask(){
+    fun initTodayTask() {
         val taskListView = findViewById<ListView>(R.id.lv_task)
         val form_task: Array<String> = arrayOf("ib_task_type", "tv_task_title")
         val to_task: IntArray = intArrayOf(R.id.ib_task_type, R.id.tv_task_title)
@@ -114,15 +129,18 @@ class MainActivity : BaseActivity() {
 
         override fun onBefore(request: Request, id: Int) {
             System.out.println("D打印request——————————————————————————")
-                    System.out.println(request)
+            System.out.println(request)
 
         }
 
         override fun onAfter(id: Int) {
         }
+
         override fun onResponse(response: String, id: Int) {
             System.out.println("成功了——————————————————————————")
-            System.out.println(response )
+            val gson: Gson = Gson()
+            val result = gson.fromJson<ApiResult<BaseCard>>(response, ApiResult::class.java)
+            System.out.println(result)
             when (id) {
                 100 -> Toast.makeText(this@MainActivity, "http", Toast.LENGTH_SHORT).show()
                 101 -> Toast.makeText(this@MainActivity, "https", Toast.LENGTH_SHORT).show()
@@ -132,5 +150,7 @@ class MainActivity : BaseActivity() {
         override fun inProgress(progress: Float, total: Long, id: Int) {
         }
     }
+
+
 }
 

@@ -58,7 +58,8 @@ class BaseCardKeyAdapter(var list: ArrayList<BaseCard>, var context: Context, va
         }
         viewHolder.infoItem.setOnClickListener{
             intent.putExtra("id",item.key)
-            startActivity(context,intent,null)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            context.startActivity(intent)
         }
         return view
     }
