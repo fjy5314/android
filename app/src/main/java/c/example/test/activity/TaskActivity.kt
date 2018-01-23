@@ -6,7 +6,7 @@ import android.support.v4.view.ViewPager
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import c.example.test.R
+import  c.example.test.R
 import c.example.test.adapter.TaskPagerAdapter
 import c.example.test.model.Task
 
@@ -72,10 +72,12 @@ class TaskActivity : BaseActivity() {
     }
 
     private fun initTodoTaskList() {
-        todoTaskList.add(Task())
-        todoTaskList.add(Task())
-        todoTaskList.add(Task())
-        todoTaskList.add(Task())
+        todoTaskList.add(Task(R.mipmap.ic_bell, "x", "c", "v"))
+        todoTaskList.add(Task(R.mipmap.ic_email, "x", "c", "v"))
+        todoTaskList.add(Task(R.mipmap.ic_bell, "x", "c", "v"))
+        todoTaskList.add(Task(R.mipmap.ic_bell, "x", "c", "v"))
+
+
     }
 
     fun initTodoTaskListView() {
@@ -93,10 +95,10 @@ class TaskActivity : BaseActivity() {
     }
 
     private fun initHistoryTaskList() {
-        historyTaskList.add(Task())
-        historyTaskList.add(Task())
-        historyTaskList.add(Task())
-        historyTaskList.add(Task())
+        historyTaskList.add(Task(R.mipmap.ic_back, "x", "c", "v"))
+        historyTaskList.add(Task(R.mipmap.ic_bell, "x", "c", "v"))
+        historyTaskList.add(Task(R.mipmap.ic_email, "x", "c", "v"))
+        historyTaskList.add(Task(R.mipmap.ic_bell, "x", "c", "v"))
     }
 
     override fun initContentView(): Int {
@@ -111,6 +113,9 @@ class TaskActivity : BaseActivity() {
 
         class ViewHolder(viewItem: View) {
             val iconImagheVierw: ImageView = viewItem.findViewById(R.id.iv_todo_type_pic)
+            val title: TextView=viewItem.findViewById(R.id.tv_todo_title)
+            val desc: TextView=viewItem.findViewById(R.id.tv_todo_desc)
+            val time: TextView=viewItem.findViewById(R.id.tv_todo_time)
         }
 
         override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
@@ -124,13 +129,15 @@ class TaskActivity : BaseActivity() {
                 view = convertView
                 viewHolder = view.tag as ViewHolder
             }
-            val task = getItem(position)
-            viewHolder.iconImagheVierw.setImageResource(task.getIcon)
-
+            val task = getItem(position) as Task
+            viewHolder.iconImagheVierw.setImageResource(task.type)
+            viewHolder.time.text= task.endTime
+            viewHolder.desc.text= task.content
+            viewHolder.title.text=task.title
             return view
         }
 
-        override fun getItem(position: Int): Any {
+        override fun getItem(position: Int):  Any{
             return taskList.get(position)
         }
 
@@ -148,6 +155,10 @@ class TaskActivity : BaseActivity() {
     class HistoryTaskListViewAdapter(var taskList: ArrayList<Task>, var context: Context) : BaseAdapter() {
 
         class ViewHolder(viewItem: View) {
+            val historyTaskTypePic :ImageView=viewItem.findViewById(R.id.iv_history_task_type_pic)
+            val title : TextView=viewItem.findViewById(R.id.tv_history_task_title)
+            val time : TextView=viewItem.findViewById(R.id.tv_history_task_time)
+            val key : TextView =viewItem.findViewById(R.id.tv_history_task_month)
         }
 
         override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
@@ -161,8 +172,11 @@ class TaskActivity : BaseActivity() {
                 view = convertView
                 viewHolder = view.tag as ViewHolder
             }
-            val item = getItem(position)
-
+            val item = getItem(position) as Task
+            viewHolder.historyTaskTypePic.setImageResource(item.type)
+            viewHolder.title.text=item.title
+            viewHolder.time.text=item.endTime
+            viewHolder.key.visibility=View.GONE
             return view
         }
 

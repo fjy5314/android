@@ -6,4 +6,6 @@
     <color name="colorGray">#999999</color>
     <color name="colorFont1">#373A3D</color>
     <color name="colorFont2">#737880</color>
+    <color name="colorSkyBlue">#20A0FF</color>
+    <color name="colorWhite">#ffffff</color>
 </resources>

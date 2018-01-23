@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_title"></include>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:orientation="horizontal"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:background="@drawable/ic_background_border"
+        >
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="48dp"
+            android:background="@drawable/ic_background_border"
+            >
+                <Button
+                    android:id="@+id/btn_message_inform"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="#ffffff"
+                    android:textColor="@color/colorSkyBlue"
+                    android:text="通知" />
+                <TextView
+                    android:id="@+id/tv_message_inform_mark"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/ic_circle"
+                    android:text="2"
+                    android:gravity="center"
+                    android:textColor="#ffffff" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/ic_background_border"
+            android:layout_height="48dp">
+                <Button
+                    android:id="@+id/btn_message_alarm"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:textColor="@color/colorSkyBlue"
+                    android:background="#ffffff"
+                    android:text="预警" />
+                <TextView
+                    android:id="@+id/tv_message_alarm_mark"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/ic_circle"
+                    android:text="2"
+                    android:gravity="center"
+                    android:textColor="#000000" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/ic_background_border"
+            android:layout_height="48dp">
+                <Button
+                    android:id="@+id/btn_message_report"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:textColor="@color/colorSkyBlue"
+                    android:background="#ffffff"
+                    android:text="报告" />
+
+                <TextView
+                    android:id="@+id/tv_message_report_mark"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/ic_circle"
+                    android:text="2"
+                    android:gravity="center"
+                    android:textColor="#ffffff" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_base"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>

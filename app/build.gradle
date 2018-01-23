@@ -7,19 +7,49 @@ apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion 26
     defaultConfig {
-        applicationId "c.example.test"
         minSdkVersion 15
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        project.archivesBaseName = "SmartPublisherSDKDemo"
+    }
+    splits {
+
+        // Configures screen ABI split settings
+        abi {
+
+            // Enable ABI APK splits
+            enable true
+
+            // By default all ABIs are included, so use reset() and include to specify that we only
+            // want APKs for x86, armeabi-v7a, and mips
+
+            // Resets the list of ABIs that Gradle should create APKs for to none
+            reset()
+
+            // Specifies a list of ABIs that Gradle should create APKs for
+            //include "armeabi"
+
+            include 'armeabi-v7a', 'arm64-v8a' //select ABIs to build APKs for
+
+            // Specify that we do not want to also generate a universal APK that includes all ABIs
+            //universalApk false
+            universalApk true
+        }
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//            android.applicationVariants.all { variant ->
+//                variant.outputs.all {
+//                    output -> outputFileName = new File( "SmartPublisherSDKDemo.apk")
+//                }
+//            }
         }
     }
+
 }
 
 dependencies {
@@ -30,5 +60,10 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    implementation 'com.loopj.android:android-async-http:1.4.9'
+    implementation 'com.google.code.gson:gson:2.3.1'
     implementation 'com.zhy:okhttputils:2.6.2'
+    implementation 'com.squareup.okhttp3:okhttp-urlconnection:3.2.0'
+    implementation files('src/main/jniLibs/smartavengine.jar')
+
 }

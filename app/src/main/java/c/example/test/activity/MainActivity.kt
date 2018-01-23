@@ -2,14 +2,21 @@ package c.example.test.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.*
-import c.example.test.R
+import  c.example.test.R
 import java.util.*
 import kotlin.collections.ArrayList
+import com.zhy.http.okhttp.OkHttpUtils
+import android.widget.Toast
+import com.zhy.http.okhttp.callback.StringCallback
+
+import okhttp3.Request
+import okhttp3.Call
+
 
 
 class MainActivity : BaseActivity() {
+
     override fun initContentView(): Int {
         return R.layout.activity_main
     }
@@ -23,6 +30,21 @@ class MainActivity : BaseActivity() {
         imageButton.setImageDrawable(resources.getDrawable(R.mipmap.ic_user))
         initMenu()
         initTodayTask()
+
+         findViewById<ImageButton>(R.id.ib_shoot_button).setOnClickListener {
+             startActivity(Intent(this, CameraActivity::class.java))
+         }
+//        show()
+    }
+    fun  show(){
+         var map= HashMap<String, String>()
+        map.put("Content-Type","application/json")
+        OkHttpUtils
+                .post()
+                .url("http://114.115.129.48:1650/api/device/currentList")
+                .headers(map)
+                .build()
+                .execute(MyStringCallback())
     }
     fun initMenu(){
         val serviceGrid = findViewById<GridView>(R.id.gv_menu)
@@ -82,6 +104,33 @@ class MainActivity : BaseActivity() {
         }
 
         return data_list
+    }
+
+
+    inner class MyStringCallback : StringCallback() {
+        override fun onError(call: Call, e: java.lang.Exception?, id: Int) {
+            System.out.println("出错了——————————————————————————")
+        }
+
+        override fun onBefore(request: Request, id: Int) {
+            System.out.println("D打印request——————————————————————————")
+                    System.out.println(request)
+
+        }
+
+        override fun onAfter(id: Int) {
+        }
+        override fun onResponse(response: String, id: Int) {
+            System.out.println("成功了——————————————————————————")
+            System.out.println(response )
+            when (id) {
+                100 -> Toast.makeText(this@MainActivity, "http", Toast.LENGTH_SHORT).show()
+                101 -> Toast.makeText(this@MainActivity, "https", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        override fun inProgress(progress: Float, total: Long, id: Int) {
+        }
     }
 }
 

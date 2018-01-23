@@ -25,6 +25,7 @@ abstract class BaseActivity : AppCompatActivity() {
         messageButton.setOnClickListener {
             Toast.makeText(this, "taskListView" , Toast.LENGTH_SHORT).show();
             startActivity(Intent(this, MessageActivity::class.java))
+
         }
         initView(savedInstanceState)
     }

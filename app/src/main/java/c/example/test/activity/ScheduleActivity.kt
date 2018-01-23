@@ -2,11 +2,8 @@ package c.example.test.activity
 
 import android.os.Bundle
 import android.widget.CalendarView
-import c.example.test.R
+import  c.example.test.R
 import android.widget.Toast
-import android.widget.CalendarView.OnDateChangeListener
-import c.example.test.R.id.calendarView
-
 
 
 /**

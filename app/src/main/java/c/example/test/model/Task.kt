@@ -3,9 +3,10 @@ package c.example.test.model
 /**
  * Created by flny on 2018/1/16.
  */
-class Task {
+  data class Task (
+        val type: Int,
+        var title: String,
+        var endTime: String,
+        var content: String
 
-    var title: String? = null
-    var endTime: String? = null
-    var content: String? = null
-}
+)

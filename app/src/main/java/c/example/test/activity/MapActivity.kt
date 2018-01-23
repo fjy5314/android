@@ -1,8 +1,7 @@
 package c.example.test.activity
 
 import android.os.Bundle
-import c.example.test.R
-
+import  c.example.test.R
 /**
  * Created by flny on 2018/1/15.
  */
