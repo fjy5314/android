@@ -86,7 +86,7 @@ class CameraActivity : BaseActivity(), SurfaceHolder.Callback, Camera.PreviewCal
     private var btnInputPushUrl: Button? = null
     private var btnStartStop: Button? = null
 
-    private var btnStartPush: Button? = null
+    private var btnStartPush: ImageButton? = null
     private var btnStartRecorder: Button? = null
     private var btnCaptureImage: Button? = null
 
@@ -163,7 +163,7 @@ class CameraActivity : BaseActivity(), SurfaceHolder.Callback, Camera.PreviewCal
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);    //屏幕常亮
         myContext = this.applicationContext
         libPublisher = SmartPublisherJni()
-        btnStartPush = findViewById<View>(R.id.button_start_push) as Button
+        btnStartPush = findViewById(R.id.button_start_push)
         btnStartPush!!.setOnClickListener(ButtonStartPushListener())
         mSurfaceView = findViewById<View>(R.id.surface) as SurfaceView
         mSurfaceHolder = mSurfaceView.holder
@@ -702,8 +702,6 @@ class CameraActivity : BaseActivity(), SurfaceHolder.Callback, Camera.PreviewCal
                 if (!isRecording) {
                     ConfigControlEnable(true)
                 }
-
-                btnStartPush!!.text = " 推送"
 
                 isPushing = false
 

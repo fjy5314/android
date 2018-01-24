@@ -31,6 +31,7 @@ abstract class BaseActivity : AppCompatActivity() {
         leftButton.setOnClickListener {
             onClickLeftButton()
         }
+        initData()
         initView(savedInstanceState)
     }
 
@@ -39,6 +40,8 @@ abstract class BaseActivity : AppCompatActivity() {
     abstract fun initView(savedInstanceState: Bundle?)
 
     abstract fun initTitle(): String
+
+    open fun initData(){}
 
     open fun onClickLeftButton() {
         finish()

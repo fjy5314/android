@@ -4,9 +4,9 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.os.Build
+import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.MotionEvent
-import android.util.AttributeSet
 import android.view.View
 import c.example.test.R
 
@@ -20,7 +20,7 @@ class PinYinSlideView @JvmOverloads constructor(context: Context, attrs: Attribu
     private var backgroundPaint: Paint? = null
     private var circlePaint: Paint? = null
     private var circleTextPaint: Paint? = null
-    private var height: Float = 0.toFloat()
+    private var height: Int? = 0
     private var textHeight: Float = 0.toFloat()
     private var paddingHeight: Float = 0.toFloat()
     private var radius: Float = 0.toFloat()
@@ -42,31 +42,31 @@ class PinYinSlideView @JvmOverloads constructor(context: Context, attrs: Attribu
 
     private fun initView() {
         textPaint = Paint()
-        textPaint!!.setAntiAlias(true)
-        textPaint!!.setStyle(Paint.Style.FILL)
-        textPaint!!.setColor(getResources().getColor(R.color.txtGray))
-        val textSize = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 10f, getResources().getDisplayMetrics())
-        textPaint!!.setTextSize(textSize)
-        textPaint!!.setTextAlign(Paint.Align.CENTER)
-        val metrics = textPaint!!.getFontMetrics()
+        textPaint!!.isAntiAlias = true
+        textPaint!!.style = Paint.Style.FILL
+        textPaint!!.color = resources.getColor(R.color.txtGray)
+        val textSize = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 10f, resources.displayMetrics)
+        textPaint!!.textSize = textSize
+        textPaint!!.textAlign = Paint.Align.CENTER
+        val metrics = textPaint!!.fontMetrics
         textHeight = metrics.bottom - metrics.top
         backgroundPaint = Paint()
-        backgroundPaint!!.setAntiAlias(true)
-        backgroundPaint!!.setStyle(Paint.Style.FILL)
-        backgroundPaint!!.setColor(getResources().getColor(R.color.backgroundGray))
-        backgroundSize = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 30f, getResources().getDisplayMetrics())
-        radius = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 3f, getResources().getDisplayMetrics())
+        backgroundPaint!!.isAntiAlias = true
+        backgroundPaint!!.style = Paint.Style.FILL
+        backgroundPaint!!.color = resources.getColor(R.color.backgroundGray)
+        backgroundSize = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 30f, resources.displayMetrics)
+        radius = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 3f, resources.displayMetrics)
 
         circlePaint = Paint()
         circleTextPaint = Paint()
-        circlePaint!!.setAntiAlias(true)
-        circleTextPaint!!.setAntiAlias(true)
-        circlePaint!!.setColor(getResources().getColor(R.color.backgroundGray))
-        circleTextPaint!!.setColor(getResources().getColor(R.color.txtGray))
-        circlePaint!!.setStyle(Paint.Style.FILL)
-        circlePaint!!.setStrokeWidth(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 100f, getResources().getDisplayMetrics()))
-        circleTextPaint!!.setTextSize(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 30f, getResources().getDisplayMetrics()))
-        circleTextPaint!!.setTextAlign(Paint.Align.CENTER)
+        circlePaint!!.isAntiAlias = true
+        circleTextPaint!!.isAntiAlias = true
+        circlePaint!!.color = getResources().getColor(R.color.backgroundGray)
+        circleTextPaint!!.color = getResources().getColor(R.color.txtGray)
+        circlePaint!!.style = Paint.Style.FILL
+        circlePaint!!.strokeWidth = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 100f, getResources().getDisplayMetrics())
+        circleTextPaint!!.textSize = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 30f, getResources().getDisplayMetrics())
+        circleTextPaint!!.textAlign = Paint.Align.CENTER
         this.setOnTouchListener(this)
     }
 
@@ -76,17 +76,17 @@ class PinYinSlideView @JvmOverloads constructor(context: Context, attrs: Attribu
     }
 
     override protected fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        height = MeasureSpec.getSize(heightMeasureSpec) as Float
-        paddingHeight = (height - 28 * textHeight) / 29
-        screenX = getResources().getDisplayMetrics().widthPixels / 2 as Float
-        screenY = (height / 2).toFloat()
+        height = MeasureSpec.getSize(heightMeasureSpec)
+        paddingHeight = (height!! - 28 * textHeight) / 29
+        screenX = (resources.displayMetrics.widthPixels / 2).toFloat()
+        screenY = (height!! / 2).toFloat()
         val mode = MeasureSpec.getMode(widthMeasureSpec)
         var size = 0f
         when (mode) {
             MeasureSpec.EXACTLY -> size = MeasureSpec.getSize(widthMeasureSpec).toFloat()
             MeasureSpec.AT_MOST -> size = backgroundSize
         }
-        setMeasuredDimension(size.toInt(), height.toInt())
+        setMeasuredDimension(size.toInt(), height!!)
     }
 
     override fun onTouch(v: View, event: MotionEvent): Boolean {
@@ -149,7 +149,7 @@ class PinYinSlideView @JvmOverloads constructor(context: Context, attrs: Attribu
     //        return true;
     //    }
 
-    override protected fun onDraw(canvas: Canvas) {
+    override fun onDraw(canvas: Canvas) {
         val c = charArrayOf('↑', 'A', '#')
         var baseY = textHeight
         val baseX = (0 + backgroundSize) / 2
@@ -157,9 +157,9 @@ class PinYinSlideView @JvmOverloads constructor(context: Context, attrs: Attribu
         if (hasTouch) {
             val c1 = charArrayOf('↑', 'A', '#')
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                canvas.drawRoundRect(0.toFloat(), 0.toFloat(), backgroundSize, height, radius, radius, backgroundPaint)
+                canvas.drawRoundRect(0.toFloat(), 0.toFloat(), backgroundSize, height!!.toFloat(), radius, radius, backgroundPaint)
             } else {
-                canvas.drawRect(0.toFloat(), 0.toFloat(), backgroundSize, height, backgroundPaint)
+                canvas.drawRect(0.toFloat(), 0.toFloat(), backgroundSize, height!!.toFloat(), backgroundPaint)
             }
             val offsetY = textHeight + paddingHeight
             for (i in 0..27) {
@@ -184,31 +184,31 @@ class PinYinSlideView @JvmOverloads constructor(context: Context, attrs: Attribu
                     break
                     //canvas.drawText(c1,0,1,screenX,screenY+textHeight,circleTextPaint);
                 }
-                if (i > 0 && i < 27) {
+                if (i in 1..26) {
                     c1[1]++
                 }
             }
         } else {
             if (onShowTextListener != null) {
-                onShowTextListener!!.showText(null)
+                onShowTextListener!!.showText("")
             }
         }
 
         for (i in 0..27) {
-            if (i == 0) {
-                canvas.drawText(c, 0, 1, baseX, baseY, textPaint)
-            } else if (i > 0 && i < 27) {
-                canvas.drawText(c, 1, 1, baseX, baseY, textPaint)
-                c[1]++
-            } else if (i == 27) {
-                canvas.drawText(c, 2, 1, baseX, baseY, textPaint)
+            when (i) {
+                0 -> canvas.drawText(c, 0, 1, baseX, baseY, textPaint)
+                in 1..26 -> {
+                    canvas.drawText(c, 1, 1, baseX, baseY, textPaint)
+                    c[1]++
+                }
+                27 -> canvas.drawText(c, 2, 1, baseX, baseY, textPaint)
             }
             baseY += paddingHeight + textHeight
         }
     }
 
     interface OnShowTextListener {
-        fun showText(text: String?)
+        fun showText(text: String)
     }
 
 }

@@ -1,33 +1,33 @@
 package c.example.test.adapter
 
 import android.content.Context
-import android.support.v7.widget.StaggeredGridLayoutManager
-import android.view.ViewGroup
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.StaggeredGridLayoutManager
 import android.view.View
+import android.view.ViewGroup
 
 
 /**
  * Created by flny on 2018/1/24.
  */
-abstract class BaseRecyclerAdapter<M, VH : BaseHolder> : RecyclerView.Adapter<BaseHolder> {
+abstract class BaseRecyclerAdapter<M> : RecyclerView.Adapter<BaseHolder> {
 
-    protected var headerViewxxx: View? = null
-    protected var footerViewxxx: View? = null
+    protected var mHeaderView: View? = null
+    protected var mFooterView: View? = null
 
     private var dataList: MutableList<M>? = null
 
     private var mContext: Context? = null
-    protected var onItemClickListenerxxxx: OnItemClickListener? = null
+    private var onItemClickListener: OnItemClickListener? = null
 
-    val extraHeaderFooterItemCount: Int
+    private val extraHeaderFooterItemCount: Int
         get() {
             var extraCount = dataList!!.size
-            if (headerViewxxx != null) {
+            if (mHeaderView != null) {
                 extraCount++
             }
-            if (footerViewxxx != null) {
+            if (mFooterView != null) {
                 extraCount++
             }
             return extraCount
@@ -60,7 +60,7 @@ abstract class BaseRecyclerAdapter<M, VH : BaseHolder> : RecyclerView.Adapter<Ba
     }
 
     fun setOnItemClickListener(onItemClickListener: OnItemClickListener) {
-        this.onItemClickListenerxxxx = onItemClickListener
+        this.onItemClickListener = onItemClickListener
     }
 
     fun getmContext(): Context? {
@@ -68,30 +68,22 @@ abstract class BaseRecyclerAdapter<M, VH : BaseHolder> : RecyclerView.Adapter<Ba
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseHolder {
-        return if (viewType == VIEW_HEADER) {
-            BaseHolder(headerViewxxx!!)
-        } else if (viewType == VIEW_FOOTER) {
-            BaseHolder(footerViewxxx!!)
-        } else {
-            createCustomViewHolder(parent, viewType)
+        return when (viewType) {
+            VIEW_HEADER -> BaseHolder(mHeaderView!!)
+            VIEW_FOOTER -> BaseHolder(mFooterView!!)
+            else -> createCustomViewHolder(parent, viewType)
         }
     }
 
-    abstract fun createCustomViewHolder(parent: ViewGroup, viewType: Int): VH
+    abstract fun createCustomViewHolder(parent: ViewGroup, viewType: Int): BaseHolder
 
     override fun onBindViewHolder(holder: BaseHolder, position: Int) {
         if (getItemViewType(position) == VIEW_HEADER || getItemViewType(position) == VIEW_FOOTER) {
             return
         }
-        val itemType = holder.itemViewType
-        when (itemType) {
-            0-> return
-            else -> {
-                bindCustomViewHolder(holder as VH, position)
-                if (onItemClickListenerxxxx != null) {
-                    holder.itemView.setOnClickListener { v -> onItemClickListenerxxxx!!.onItemClick(v, position) }
-                }
-            }
+        bindCustomViewHolder(holder, position)
+        if (onItemClickListener != null) {
+            holder.itemView.setOnClickListener { v -> onItemClickListener!!.onItemClick(v, position) }
         }
     }
 
@@ -120,13 +112,13 @@ abstract class BaseRecyclerAdapter<M, VH : BaseHolder> : RecyclerView.Adapter<Ba
         }
     }
 
-    abstract fun bindCustomViewHolder(holder: VH, position: Int)
+    abstract fun bindCustomViewHolder(holder: BaseHolder, position: Int)
 
     override fun getItemCount(): Int {
         var count = dataList!!.size
-        if (headerViewxxx != null)
+        if (mHeaderView != null)
             count++
-        if (footerViewxxx != null)
+        if (mFooterView != null)
             count++
         return count
     }
@@ -134,16 +126,16 @@ abstract class BaseRecyclerAdapter<M, VH : BaseHolder> : RecyclerView.Adapter<Ba
     protected abstract fun getCustomViewType(position: Int): Int
 
     fun getItem(position: Int): M? {
-        if (headerViewxxx != null && position == 0 || position >= extraHeaderFooterItemCount) {
+        if (mHeaderView != null && position == 0 || position >= extraHeaderFooterItemCount) {
             return null
         }
-        return if (headerViewxxx == null) dataList!![position] else dataList!![position - 1]
+        return if (mHeaderView == null) dataList!![position] else dataList!![position - 1]
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if (headerViewxxx != null && position == 0) {
+        return if (mHeaderView != null && position == 0) {
             VIEW_HEADER
-        } else if (footerViewxxx != null && position == extraHeaderFooterItemCount - 1) {
+        } else if (mFooterView != null && position == extraHeaderFooterItemCount - 1) {
             VIEW_FOOTER
         } else {
             getCustomViewType(position)
@@ -155,30 +147,30 @@ abstract class BaseRecyclerAdapter<M, VH : BaseHolder> : RecyclerView.Adapter<Ba
     }
 
     fun hasHeader(): Boolean {
-        return headerViewxxx != null
+        return mHeaderView != null
     }
 
 
     fun setHeaderView(headerView: View) {
-        this.headerViewxxx = headerView
+        this.mHeaderView = headerView
         notifyItemInserted(0)
     }
 
     fun setFooterView(footerView: View) {
-        this.footerViewxxx = footerView
+        this.mFooterView = footerView
         notifyDataSetChanged()
     }
 
     fun removeHeaderView() {
-        if (headerViewxxx != null) {
-            headerViewxxx = null
+        if (mHeaderView != null) {
+            mHeaderView = null
             notifyDataSetChanged()
         }
     }
 
     fun removeFooterView() {
-        if (footerViewxxx != null) {
-            footerViewxxx = null
+        if (mFooterView != null) {
+            mFooterView = null
             notifyDataSetChanged()
         }
     }

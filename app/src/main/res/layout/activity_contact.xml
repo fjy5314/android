@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/layout_title"/>
+    <include layout="@layout/layout_title" />
 
     <include layout="@layout/layout_spinner" />
 
@@ -16,49 +16,53 @@
         <TextView
             android:layout_width="77dp"
             android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:paddingLeft="16dp"
             android:text="人名"
             android:textColor="@color/colorWhite"
-            android:textSize="14dp"
-            android:gravity="center_vertical"
-            android:paddingLeft="16dp"/>
+            android:textSize="14dp" />
 
         <TextView
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
             android:text="机构"
             android:textColor="@color/colorWhite"
-            android:textSize="14dp"
-            android:gravity="center_vertical"/>
+            android:textSize="14dp" />
 
         <TextView
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
             android:text="联系方式"
             android:textColor="@color/colorWhite"
-            android:textSize="14dp"
-            android:gravity="center_vertical"/>
+            android:textSize="14dp" />
     </LinearLayout>
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <!--<include layout="@layout/stick_header"/>-->
+
+        <include layout="@layout/layout_stick_header" />
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler"
-            android:layout_marginRight="30dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        </android.support.v7.widget.RecyclerView>
+            android:layout_height="match_parent"
+            android:layout_marginRight="30dp"></android.support.v7.widget.RecyclerView>
+
         <c.example.test.widget.PinYinSlideView
-            android:layout_gravity="right"
+            android:id="@+id/pinYinSlideView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/pinYinSlideView" />
+            android:layout_gravity="right" />
+
         <c.example.test.widget.CircleTextView
             android:id="@+id/circleText"
-            android:layout_gravity="center"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
     </FrameLayout>
 </LinearLayout>

@@ -27,14 +27,14 @@ class CircleTextView @JvmOverloads constructor(context: Context, attrs: Attribut
     private fun initView() {
         circlePaint = Paint()
         circleTextPaint = Paint()
-        circlePaint!!.setAntiAlias(true)
-        circleTextPaint!!.setAntiAlias(true)
-        circlePaint!!.setColor(getResources().getColor(R.color.colorWhite))
-        circleTextPaint!!.setColor(getResources().getColor(R.color.colorFont2))
-        circlePaint!!.setStyle(Paint.Style.FILL)
-        circlePaint!!.setStrokeWidth(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 100f, getResources().getDisplayMetrics()))
-        circleTextPaint!!.setTextSize(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 30f, getResources().getDisplayMetrics()))
-        circleTextPaint!!.setTextAlign(Paint.Align.CENTER)
+        circlePaint!!.isAntiAlias = true
+        circleTextPaint!!.isAntiAlias = true
+        circlePaint!!.color = getResources().getColor(R.color.colorWhite)
+        circleTextPaint!!.color = getResources().getColor(R.color.colorFont2)
+        circlePaint!!.style = Paint.Style.FILL
+        circlePaint!!.strokeWidth = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 100f, getResources().getDisplayMetrics())
+        circleTextPaint!!.textSize = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 30f, getResources().getDisplayMetrics())
+        circleTextPaint!!.textAlign = Paint.Align.CENTER
         val metrics = circleTextPaint!!.getFontMetrics()
         textHeight = metrics.bottom - metrics.top
         radius = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 100f, getResources().getDisplayMetrics()) / 2
@@ -45,12 +45,12 @@ class CircleTextView @JvmOverloads constructor(context: Context, attrs: Attribut
         invalidate()
     }
 
-    override protected fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         setMeasuredDimension(radius.toInt() * 2, radius.toInt() * 2)
     }
 
-    override protected fun onDraw(canvas: Canvas) {
-        if (text != null) {
+    override fun onDraw(canvas: Canvas) {
+        if (!text.isNullOrEmpty()) {
             canvas.drawCircle(radius, radius, radius, circlePaint)
             canvas.drawText(text, radius, radius + textHeight / 4, circleTextPaint)
         }
