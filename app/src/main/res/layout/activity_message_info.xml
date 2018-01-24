@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <include layout="@layout/layout_title"></include>
+    <include layout="@layout/layout_title"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -34,7 +34,7 @@
             android:background="#000000"
             android:layout_marginBottom="8dp"
             android:layout_marginTop="20dp"
-            android:layout_width="fill_parent"></View>
+            android:layout_width="fill_parent"/>
 
         <ImageView
             android:id="@+id/iv_messsage_info_pic"

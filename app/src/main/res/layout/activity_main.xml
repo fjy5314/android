@@ -11,7 +11,8 @@
     <ListView
         android:id="@+id/lv_task"
         android:layout_width="match_parent"
-        android:layout_height="290dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:dividerHeight="8dp"
         android:padding="12dp" />
 
@@ -24,13 +25,14 @@
         android:paddingBottom="24dp"
         android:paddingTop="24dp"
         android:stretchMode="columnWidth"
-        android:verticalSpacing="24dp"></GridView>
+        android:verticalSpacing="24dp"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="110dp"
         android:paddingLeft="52dp"
-        android:paddingRight="52dp">
+        android:paddingRight="52dp"
+        android:layout_marginBottom="28dp">
 
         <ImageButton
             android:id="@+id/ib_video_button"

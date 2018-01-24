@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="56dp"
+    android:gravity="center_vertical"
+    android:paddingLeft="12dp"
+    android:paddingRight="8dp"
+    android:background="@color/colorWhite"
+    >
+
+    <TextView
+        android:id="@+id/tv_law_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:text="单兵执法系统"
+        android:textSize="14dp"
+       />
+    <TextView
+        android:id="@+id/tv_law_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:text="单兵执法系统"
+        android:textSize="14dp"/>
+
+</RelativeLayout>

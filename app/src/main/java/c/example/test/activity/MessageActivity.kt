@@ -100,11 +100,6 @@ class MessageActivity : BaseActivity() {
         viewList.add(listView)
     }
 
-
-
-
-
-
     override fun initTitle(): String {
         return "消息中心"
     }

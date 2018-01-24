@@ -75,17 +75,17 @@ class MainActivity : BaseActivity() {
                 3 -> startActivity(Intent(this, EventRecordActivity::class.java))
                 4 -> startActivity(Intent(this, ScheduleActivity::class.java))
                 5 -> startActivity(Intent(this, LawActivity::class.java))
-                6 -> startActivity(Intent(this, CommunicationListActivity::class.java))
+                6 -> startActivity(Intent(this, ContactListActivity::class.java))
             }
         }
     }
 
     fun initTodayTask() {
         val taskListView = findViewById<ListView>(R.id.lv_task)
-        val form_task: Array<String> = arrayOf("ib_task_type", "tv_task_title")
-        val to_task: IntArray = intArrayOf(R.id.ib_task_type, R.id.tv_task_title)
-        val sim_adapter_task: SimpleAdapter = SimpleAdapter(this, formatlist_task(), R.layout.layout_listview_item, form_task, to_task)
-        taskListView.setAdapter(sim_adapter_task)
+        val formTask: Array<String> = arrayOf("ib_task_type", "tv_task_title")
+        val toTask: IntArray = intArrayOf(R.id.ib_task_type, R.id.tv_task_title)
+        val simAdapterTask: SimpleAdapter = SimpleAdapter(this, formatlistTask(), R.layout.layout_listview_item, formTask, toTask)
+        taskListView.setAdapter(simAdapterTask)
 
         taskListView!!.setOnItemClickListener { _, _, position, _ ->
             Toast.makeText(this, "taskListView" + position, Toast.LENGTH_SHORT).show();
@@ -93,7 +93,7 @@ class MainActivity : BaseActivity() {
         }
     }
 
-    fun formatlist_task(): ArrayList<Map<String, Any>> {
+    fun formatlistTask(): ArrayList<Map<String, Any>> {
         var data_list = ArrayList<Map<String, Any>>()
         var map: Map<String, Any>? = null
         val titles = arrayOf("地图导航", "我的任务", "工作报告", "事件记录", "我的日程", "法律法规", "通讯录")

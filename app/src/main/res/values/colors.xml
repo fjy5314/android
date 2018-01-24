@@ -8,4 +8,7 @@
     <color name="colorFont2">#737880</color>
     <color name="colorSkyBlue">#20A0FF</color>
     <color name="colorWhite">#ffffff</color>
+    <color name="txtGray">#f4d7d7d7</color>
+    <color name="backgroundGray">#e1353434</color>
+    <color name="txt_grey">#A9A9A9</color>
 </resources>

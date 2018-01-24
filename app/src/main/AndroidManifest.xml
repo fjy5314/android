@@ -31,7 +31,7 @@
         <activity android:name=".activity.ReportActivity"  />
         <activity android:name=".activity.ScheduleActivity"  />
         <activity android:name=".activity.EventRecordActivity"  />
-        <activity android:name=".activity.CommunicationListActivity"  />
+        <activity android:name=".activity.ContactListActivity"  />
         <activity android:name=".activity.LawActivity"  />
         <activity android:name=".activity.MessageActivity"  />
         <activity android:name=".activity.MessageInfoActivity"  />

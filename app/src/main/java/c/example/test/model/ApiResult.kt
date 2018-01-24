@@ -2,6 +2,6 @@ package c.example.test.model
 
 data class ApiResult<T>(
         val retCode: String,
-        var retMsg: String? = null,
-        var data: T? = null
+        var retMsg: String,
+        var data: T
 )
