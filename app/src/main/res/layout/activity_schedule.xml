@@ -16,4 +16,8 @@
         android:textColor="@color/colorFont2"
         android:text="@string/task_list"
         android:gravity="center_vertical"/>
+    <ListView
+        android:id="@+id/lv_task"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 </LinearLayout>

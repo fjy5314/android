@@ -2,4 +2,8 @@
     <string name="app_name">SmartPublisherSDKDemo</string>
     <string name="task_list">任务列表</string>
     <string name="report_submit">提交报告</string>
+    <string name="system_name">单兵作战指挥系统</string>
+    <string name="login">登录</string>
+    <string name="login_pass">密码</string>
+    <string name="login_name">账号</string>
 </resources>

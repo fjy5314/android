@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#A9A9A9</color>
     <color name="colorGray">#999999</color>
     <color name="colorFont1">#373A3D</color>
     <color name="colorFont2">#737880</color>
@@ -11,4 +11,8 @@
     <color name="txtGray">#f4d7d7d7</color>
     <color name="backgroundGray">#e1353434</color>
     <color name="txt_grey">#A9A9A9</color>
+    <color name="red">#FF0000</color>
+    <color name="brown">#F7F7F7</color>
+    <color name="task_gray">#C6C9CC</color>
+
 </resources>

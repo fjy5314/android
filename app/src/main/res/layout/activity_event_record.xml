@@ -5,25 +5,25 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:layout_centerInParent="true">
-    <include layout="@layout/layout_title"></include>
-    <ListView
-        android:id="@+id/lv_task"
+    <include layout="@layout/layout_title"/>
+    <include layout="@layout/layout_spinner"/>
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:dividerHeight="8dp"
-        android:padding="12dp" />
-    <TextView
-        android:id="@+id/tv_event_record_add"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="24dp"
-        android:layout_gravity="center"
-        android:background="@drawable/ic_circle"
-        android:text="+"
-        android:paddingLeft="23dp"
-        android:paddingTop="10dp"
-        android:textSize="28dp"
-        android:textColor="@color/colorWhite"/>
+        android:layout_height="match_parent">
+        <ListView
+            android:id="@+id/lv_task"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <ImageButton
+            android:id="@+id/tv_event_record_add"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_gravity="bottom"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            android:background="@drawable/ic_circle_red"
+            android:src="@mipmap/ic_add" />
+    </RelativeLayout>
+
 </LinearLayout>

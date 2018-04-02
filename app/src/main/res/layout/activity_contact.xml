@@ -14,7 +14,7 @@
         android:background="@color/colorSkyBlue">
 
         <TextView
-            android:layout_width="77dp"
+            android:layout_width="100dp"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:paddingLeft="16dp"
@@ -51,15 +51,16 @@
             android:id="@+id/recycler"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginRight="30dp"></android.support.v7.widget.RecyclerView>
+            android:divider="@null"
+            android:layout_marginRight="30dp"/>
 
-        <c.example.test.widget.PinYinSlideView
+        <com.daniulive.smartpublisher.widget.PinYinSlideView
             android:id="@+id/pinYinSlideView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right" />
 
-        <c.example.test.widget.CircleTextView
+        <com.daniulive.smartpublisher.widget.CircleTextView
             android:id="@+id/circleText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -3,10 +3,11 @@
     android:id="@+id/stick_container"
     android:layout_width="match_parent"
     android:layout_height="30dp"
-    android:layout_marginRight="30dp"
-    android:background="@color/txtGray"
     android:gravity="center_vertical"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:visibility="gone"
+    android:background="@color/brown"
+    >
 
     <TextView
         android:id="@+id/header"

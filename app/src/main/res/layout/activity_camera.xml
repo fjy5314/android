@@ -4,42 +4,89 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <include layout="@layout/layout_title"></include>
+    <include layout="@layout/layout_title"
+        />
 
-    <android.view.SurfaceView
-        android:id="@+id/surface"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_gravity="center" />
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="140dp"
-        android:orientation="vertical"
-        android:paddingTop="16dp">
-        <TextView
-            android:gravity="center"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <android.view.SurfaceView
+            android:id="@+id/surface"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center" />
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="time"/>
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical" >
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="112dp"
-            android:paddingBottom="24dp"
-            android:paddingTop="24dp">
-            <ImageButton
-                android:layout_width="48dp"
-                android:layout_height="48dp" />
-            <ImageButton
-                android:id="@+id/button_start_push"
-                android:layout_width="64dp"
-                android:layout_height="64dp"
-                android:layout_centerHorizontal="true" />
-            <ImageButton
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_alignParentRight="true" />
-        </RelativeLayout>
-    </LinearLayout>
+            <LinearLayout
+                android:id="@+id/adcontainer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:orientation="horizontal" >
+                    <Button
+                        android:id="@+id/button_recoder_manage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" 录像管理 " />
+
+                    <Button
+                        android:id="@+id/button_mute"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" 静音" />
+                    <Button
+                        android:id="@+id/button_start_recorder"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        android:text=" 录像" />
+                </LinearLayout>
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="112dp"
+                    android:padding="24dp" >
+
+                    <ImageView
+                        android:id="@+id/button_switchCamera"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="changeButtonColor"
+                        android:src="@mipmap/ic_camera_switch2"
+                        android:text="前后置摄像头切换"/>
+
+                    <TextView
+                        android:id="@+id/button_start_push"
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:background="@mipmap/ic_shoot"
+                        android:layout_centerHorizontal="true"
+                        android:gravity="center"
+                        android:textColor="@color/colorWhite"
+                        />
+                    <ImageButton
+                        android:id="@+id/button_capture_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:background="@mipmap/ic_capture"
+                        android:text=" 快照" />
+
+                </RelativeLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+    </RelativeLayout>
+
+
 </LinearLayout>

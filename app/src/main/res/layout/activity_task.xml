@@ -2,9 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/brown">
 
-    <include layout="@layout/layout_title"></include>
+    <include layout="@layout/layout_title"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -32,5 +33,6 @@
     <android.support.v4.view.ViewPager
         android:id="@+id/vp_task"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:paddingTop="8dp"/>
 </LinearLayout>

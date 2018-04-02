@@ -3,11 +3,12 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
-
+apply plugin: 'org.greenrobot.greendao' // apply plugin
 android {
     compileSdkVersion 26
     defaultConfig {
-        minSdkVersion 15
+        applicationId "com.daniulive.smartpublisher"
+        minSdkVersion 19
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -38,20 +39,20 @@ android {
             universalApk true
         }
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            android.applicationVariants.all { variant ->
-                variant.outputs.all {
-                    output -> outputFileName = new File( "SmartPublisherSDKDemo.apk")
-                }
-            }
+
         }
     }
-
 }
-
+greendao {
+    schemaVersion 1
+    targetGenDir 'src/main/java'
+    daoPackage 'com.daniulive.smartpublisher.greendao'
+}
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
@@ -66,8 +67,12 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.3.1'
     implementation 'com.zhy:okhttputils:2.6.2'
     implementation 'com.squareup.okhttp3:okhttp-urlconnection:3.2.0'
-    implementation 'com.github.arcadefire:nice-spinner:1.3.1'
+    implementation 'com.github.arcadefire:nice-spinner:1.3.1'  //下拉框
+    implementation group: 'com.rabbitmq', name: 'amqp-client', version: '4.0.0'  //rabbitMQ
     implementation group: 'com.belerweb', name: 'pinyin4j', version: '2.5.0'
+    implementation 'com.github.addappcn:android-pickers:1.0.2' //选择器
+    implementation 'org.greenrobot:greendao:3.2.2' // add sqlite orm
+    implementation'org.greenrobot:greendao-generator:3.2.2'
     implementation files('src/main/jniLibs/smartavengine.jar')
-
+    implementation files('src/main/jniLibs/BaiduLBS_Android.jar')
 }

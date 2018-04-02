@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_title"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="报告名称" />
+            <EditText
+                android:id="@+id/ed_report_info_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:maxLines="1"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:hint="报告名称"/>
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="开始时间" />
+            <EditText
+                android:id="@+id/ed_report_info_start_time"
+                android:layout_width="wrap_content"
+                android:background="@null"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:hint="开始时间"
+                android:inputType="date" />
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="计划完成时间" />
+            <EditText
+                android:id="@+id/ed_report_info_end_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:maxLines="1"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:hint="计划完成时间" />
+        </RelativeLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="报告描述"
+            android:gravity="center_vertical"/>
+        <EditText
+            android:id="@+id/ed_report_info_desc"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:minLines="8"
+            android:maxLines="10"
+            android:enabled="true"
+            android:gravity="top"
+            android:hint="报告描述"
+            android:background="@drawable/ic_textarea_background"
+            android:inputType="textMultiLine" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical">
+
+            <Button
+                android:id="@+id/btn_report_info_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                android:text="提交报告"
+                android:textColor="@color/colorSkyBlue"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+</LinearLayout>
